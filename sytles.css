@@ -32,15 +32,19 @@ button {
   background-color: rgb(230, 57, 70);
   border: 0px;
   color: white;
+  margin: 0px 20px;
+
 }
 .reset {
   width: 80px;
 }
 button:hover{
   cursor: pointer;
+  
 }
 .drawingStatus{
   font-size: larger;
   color : white ; 
   font-weight: bolder;
+  margin-bottom: 10px;
 }

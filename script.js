@@ -14,11 +14,6 @@ function boxes(x) {
           e.target.style.backgroundColor = "blue";
         }
       });
-      column.addEventListener("click", (e)=>{
-        if (!drawing){
-          e.target.style.backgroundColor="blue";
-        }
-      });
     }
   }
 }
@@ -30,9 +25,11 @@ drawingStatus.style.color = 'white';
 drawingStatus.classList.add("drawingStatus");
 let p = 16 ; 
 boxes(p);
-area.addEventListener ("click", ()=>{
-  drawing = !drawing;
-  drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
+document.addEventListener ("keypress", (e)=>{
+  if (e.key === "d" ){
+    drawing = !drawing;
+    drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
+  }
 })
 const count = document.querySelector(".count");
 count.addEventListener("click", newsheet);
@@ -54,3 +51,8 @@ reset.addEventListener("click", ()=>{
   drawing= false; 
   drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
 })
+const info = document.createElement("div");
+info.classList.add('info');
+info.textContent = `press [D] to ${drawing? 'disable':'enable'} the drawing`;
+info.style.color= "white";
+body.appendChild(info);
