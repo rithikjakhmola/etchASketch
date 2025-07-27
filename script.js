@@ -1,4 +1,5 @@
 const area = document.querySelector(".area");
+let drawing = false ; 
 function boxes(x) {
   for (let i = 0; i < x; i++) {
     const row = document.createElement("div");
@@ -7,20 +8,36 @@ function boxes(x) {
     for (let j = 0; j < x; j++) {
       const column = document.createElement("div");
       column.id = "column";
-      row.appendChild(column);
-      area.addEventListener("click", () => {
-        column.addEventListener("mouseover", function (e) {
+      row.appendChild(column); 
+      column.addEventListener("mouseover", function (e) {
+        if(drawing){
           e.target.style.backgroundColor = "blue";
-        });
+        }
+      });
+      column.addEventListener("click", (e)=>{
+        if (!drawing){
+          e.target.style.backgroundColor="blue";
+        }
       });
     }
   }
 }
-boxes(16);
+const drawingStatus = document.createElement("div");
+drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
+const body = document.querySelector(".body");
+body.appendChild(drawingStatus);
+drawingStatus.style.color = 'white'; 
+drawingStatus.classList.add("drawingStatus");
+let p = 16 ; 
+boxes(p);
+area.addEventListener ("click", ()=>{
+  drawing = !drawing;
+  drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
+})
 const count = document.querySelector(".count");
 count.addEventListener("click", newsheet);
 function newsheet(){
-    let p = prompt ("Add the number of boxes");
+    p = prompt ("Add the number of boxes");
     p = parseInt(p);
     if (p<=100 && p >1){
         area.innerHTML = "";
@@ -30,3 +47,10 @@ function newsheet(){
         alert("enter a valid number");
     }
 }
+const reset = document.querySelector(".reset");
+reset.addEventListener("click", ()=>{
+  area.innerHTML = "";
+  boxes(p); 
+  drawing= false; 
+  drawingStatus.textContent = `drawing :${drawing? 'enabled': 'disabled'}`;
+})

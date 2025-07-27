@@ -11,8 +11,8 @@ h1 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 80vh;
-  width: 90vw;
+  height: 70vh;
+  width: 70vh;
   border: 2px solid white;
   margin: 20px auto;
 }
@@ -35,4 +35,12 @@ button {
 }
 .reset {
   width: 80px;
+}
+button:hover{
+  cursor: pointer;
+}
+.drawingStatus{
+  font-size: larger;
+  color : white ; 
+  font-weight: bolder;
 }
